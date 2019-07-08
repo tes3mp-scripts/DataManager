@@ -12,13 +12,30 @@ function DataManager.saveConfiguration(scriptName, config)
     return jsonInterface.save(filePath, config)
 end
 
+function DataManager.checkForNils(t, d)
+    for k, v in pairs(d) do
+        if t[k] == nil then
+            t[k] = v
+        else
+            if type(d[k]) == "table" then
+                if type(t[k]) == "table" then
+                    DataManager.checkForNils(t[k], d[k])
+                else
+                    t[k] = d[k]
+                end
+            end
+        end
+    end
+    return t
+end
+
 function DataManager.loadConfiguration(scriptName, defaultConfig)
     local filePath = DataManager.getConfigPath(scriptName)
     local config = jsonInterface.load(filePath)
     if config == nil then
         config = defaultConfig
-        DataManager.saveConfiguration(scriptName, config)
     end
+    DataManager.saveConfiguration(scriptName, config)
     return config
 end
 
@@ -38,8 +55,8 @@ function DataManager.loadData(scriptName, defaultData)
     local data = jsonInterface.load(filePath)
     if data == nil then
         data = defaultData
-        DataManager.saveData(scriptName, data)
     end
+    DataManager.saveData(scriptName, data)
     return data
 end
 
