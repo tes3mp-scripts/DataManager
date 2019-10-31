@@ -7,9 +7,9 @@ function DataManager.getConfigPath(scriptName)
     return DataManager.configPrefix .. scriptName .. ".json"
 end
 
-function DataManager.saveConfiguration(scriptName, config)
+function DataManager.saveConfiguration(scriptName, config, keyOrder)
     local filePath = DataManager.getConfigPath(scriptName)
-    return jsonInterface.save(filePath, config)
+    return jsonInterface.save(filePath, config, keyOrder)
 end
 
 function DataManager.checkForNils(t, d)
@@ -29,13 +29,13 @@ function DataManager.checkForNils(t, d)
     return t
 end
 
-function DataManager.loadConfiguration(scriptName, defaultConfig)
+function DataManager.loadConfiguration(scriptName, defaultConfig, keyOrder)
     local filePath = DataManager.getConfigPath(scriptName)
     local config = jsonInterface.load(filePath)
     if config == nil then
         config = defaultConfig
     end
-    DataManager.saveConfiguration(scriptName, config)
+    DataManager.saveConfiguration(scriptName, config, keyOrder)
     return config
 end
 
@@ -45,18 +45,18 @@ function DataManager.getDataPath(scriptName)
     return DataManager.dataPrefix .. scriptName .. ".json"
 end
 
-function DataManager.saveData(scriptName, data)
+function DataManager.saveData(scriptName, data, keyOrder)
     local filePath = DataManager.getDataPath(scriptName)
-    return jsonInterface.save(filePath, data)
+    return jsonInterface.save(filePath, data, keyOrder)
 end
 
-function DataManager.loadData(scriptName, defaultData)
+function DataManager.loadData(scriptName, defaultData, keyOrder)
     local filePath = DataManager.getDataPath(scriptName)
     local data = jsonInterface.load(filePath)
     if data == nil then
         data = defaultData
     end
-    DataManager.saveData(scriptName, data)
+    DataManager.saveData(scriptName, data, keyOrder)
     return data
 end
 
