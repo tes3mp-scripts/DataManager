@@ -1,4 +1,4 @@
-local DataManager = {}
+DataManager = {}
 
 DataManager.configPrefix = "custom/__config_"
 DataManager.dataPrefix = "custom/__data_"
