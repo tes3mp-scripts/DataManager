@@ -8,12 +8,12 @@ The following is a list of all functions in this module (and their arguments) yo
 * `loadConfiguration`
   * `scriptName` name by which you will be requesting your configuration file.
   * `defaultConfig` default values for your config file. Should be a complete and valid config, as it will simply be used if no file is found.
-  * `keyOrder` array which defines order in which josn keys should be written into the file, exposed from jsonInterface.save method
+  * `keyOrder` array which defines order in which json keys should be written into the file, exposed from jsonInterface.save method
 * `loadData`
   * `scriptName` same as for configuration
   * `defaultData` value used for when the file isn't found.
-  * `keyOrder` array which defines order in which josn keys should be written into the file jsonInterface.save method
+  * `keyOrder` array which defines order in which json keys should be written into the file jsonInterface.save method
 * `saveData`
   * `scriptName`
   * `data` data to write to the file
-  * `keyOrder` array which defines order in which josn keys should be written into the file jsonInterface.save method
+  * `keyOrder` array which defines order in which json keys should be written into the file jsonInterface.save method
